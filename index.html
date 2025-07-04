@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perkenalan Diri</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body {
+      background: linear-gradient(135deg, #000000, #ffffff);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-y: auto;
+      flex-direction: column;
+    }
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: zoomFade 0.8s ease;
+    }
+    .slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease-in-out;
+    }
+    .slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes zoomFade {
+      0% { transform: scale(0.9); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid white;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    button {
+      background-color: white;
+      color: #333;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #ffeb3b;
+      color: #000;
+      transform: scale(1.05);
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 24px;
+      margin-top: 15px;
+    }
+    .social-links a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .social-links a:hover {
+      color: #ffeb3b;
+      text-shadow: 0 0 10px #ffeb3b;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <audio src="musik.mp3" autoplay loop></audio>
+
+  <div class="container">
+    <div class="slide active" id="slide1">
+      <img src="https://i.postimg.cc/kgxf1Fyp/quality-restoration-20250627014202362.jpg" alt="Foto Profil">
+      <h2>Ahmad Ridho Lubis</h2>
+      <p>Halo! Saya seorang Software Engineer yang suka membangun hal-hal keren dengan kode 💻.</p>
+    </div>
+    <div class="slide" id="slide2">
+      <h2>Keahlian 👨‍💻</h2>
+      <p>- HTML, CSS, JavaScript<br>- Git & GitHub<br>- React & Node.js</p>
+    </div>
+    <div class="slide" id="slide3">
+      <h2>Temukan Saya</h2>
+      <div class="social-links">
+        <a href="https://github.com/AhmadRidhoL" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/qvzdho" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/66637620646" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <p style="margin-top: 10px;">Yuk terhubung melalui sosial media!</p>
+    </div>
+    <div class="slide" id="slide4">
+      <h2>Hasil Karya 🎨</h2>
+      <p>Berikut beberapa karya yang pernah saya buat:</p>
+      <ul style="text-align: left; margin-top: 10px;">
+        <li>🌐 Website Portfolio pribadi</li>
+        <li>📱 Aplikasi Mobile Sederhana</li>
+        <li>🎮 Mini Game Rock-Paper-Scissors</li>
+        <li>📊 Dashboard Monitoring</li>
+        <li>🤖 Script Bot Telegram Dan WhatsApp</li><li>👾 Ransomware Legal</li>
+      </ul>
+      <p style="margin-top: 10px;">(Akan terus bertambah seiring waktu 💪)</p>
+    </div>
+    <div class="buttons">
+      <button onclick="prevSlide()">Back</button>
+      <button onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+    }
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+  </script>
+</body>
+</html>
